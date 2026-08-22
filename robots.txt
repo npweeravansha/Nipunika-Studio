@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://npweeravansha.github.io/Nipunika-Weeravansha/sitemap.xml
+Sitemap: https://npweeravansha.github.io/Nipunika-Studio/sitemap.xml
