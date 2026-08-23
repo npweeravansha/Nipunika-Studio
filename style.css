@@ -825,6 +825,45 @@ img {
     font-size: 11px;
 }
 
+/* ===============================
+   VIEW ALL PROJECTS BUTTON
+================================ */
+
+.view-projects{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.view-projects-btn{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+
+    min-width:260px;
+    padding:18px 24px;
+
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.02);
+
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+
+    transition:.35s var(--ease);
+}
+
+.view-projects-btn:hover{
+    transform:translateY(-5px);
+    border-color:var(--border-blue);
+    background:rgba(49,92,255,.08);
+}
+
+.view-projects-btn .arrow{
+    color:var(--blue);
+    font-size:18px;
+}
 
 /* Browser */
 
