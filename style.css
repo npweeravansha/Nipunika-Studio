@@ -76,7 +76,7 @@ img {
     gap: 30px;
     align-items: center;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: .16em;
     color: var(--muted);
     text-transform: uppercase;
@@ -737,7 +737,7 @@ img {
 .tech-type {
     color: var(--muted-2);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .tech-item strong {
@@ -1182,11 +1182,11 @@ img {
 .service-left span {
     color: var(--blue);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .service h3 {
-    font-size: 27px;
+    font-size: 21px;
     font-weight: 500;
     letter-spacing: -.04em;
 }
@@ -1262,7 +1262,7 @@ img {
 
 .price {
     margin-top: 65px;
-    font-size: 75px;
+    font-size: 60px;
     letter-spacing: -.07em;
     font-weight: 500;
 }
@@ -1296,7 +1296,7 @@ img {
 .price-card li {
     color: #aeb2bb;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -1316,25 +1316,13 @@ img {
     justify-content: space-between;
     padding: 0 16px;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     transition: .3s ease;
 }
 
 .price-button:hover {
     background: var(--white);
     color: var(--bg);
-}
-
-.pricing-note {
-    display: flex;
-    gap: 30px;
-    margin-top: 30px;
-    padding: 18px 0;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 13px;
-    line-height: 1.7;
 }
 
 .pricing-note > span {
@@ -1349,7 +1337,7 @@ img {
     border-top: 1px solid var(--border);
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 15px;
     line-height: 1.7;
 }
 
@@ -1380,11 +1368,11 @@ img {
 .process-number {
     color: var(--blue);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .process-item h3 {
-    font-size: 30px;
+    font-size: 23px;
     font-weight: 500;
 }
 
@@ -1422,13 +1410,13 @@ img {
 .payment-steps > div:not(.flow-line) {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .payment-steps span {
     color: var(--blue);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 15px;
 }
 
 .payment-steps strong {
@@ -1614,7 +1602,7 @@ img {
 .social-number {
     color: var(--blue);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .social-item strong {
@@ -2087,7 +2075,7 @@ img {
     }
 
     .price-top {
-        font-size: 9px;
+        font-size: 11px;
     }
 
     .price {
@@ -2111,7 +2099,7 @@ img {
 
     .price-button {
         min-height: 52px;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .pricing-note {
@@ -2209,7 +2197,7 @@ img {
 
 .faq-item summary > span:first-child {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
+    font-size: 13px;
     color: rgba(255,255,255,.35);
 }
 
@@ -2401,7 +2389,7 @@ img {
     border-bottom: 1px solid rgba(255,255,255,.1);
 
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
+    font-size: 12px;
 
     color: rgba(255,255,255,.4);
 }
@@ -2416,7 +2404,7 @@ img {
     margin-bottom: 10px;
 
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
+    font-size: 12px;
 
     color: var(--blue-light);
 
@@ -2708,7 +2696,7 @@ img {
 .project-number {
     font-family: "JetBrains Mono", monospace;
 
-    font-size: 11px;
+    font-size: 15px;
 
     color: rgba(255,255,255,.35);
 
