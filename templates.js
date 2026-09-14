@@ -1,205 +1,147 @@
-/* =========================================================
-   NIPUNIKA STUDIO
-   TEMPLATES PAGE JAVASCRIPT
-========================================================= */
+/* ============================================
+   NIPUNIKA STUDIO — TEMPLATES PAGE JAVASCRIPT
+   ============================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       NAVBAR SCROLL
-    ===================================================== */
+    /* ============================================
+       NAVBAR SCROLL EFFECT
+       ============================================ */
 
     const navbar = document.querySelector(".navbar");
 
     if (navbar) {
-
-        window.addEventListener("scroll", () => {
-
+        const handleNavbarScroll = () => {
             if (window.scrollY > 20) {
                 navbar.classList.add("scrolled");
             } else {
                 navbar.classList.remove("scrolled");
             }
+        };
 
+        window.addEventListener("scroll", handleNavbarScroll, {
+            passive: true
         });
 
+        handleNavbarScroll();
     }
 
 
-    /* =====================================================
+    /* ============================================
        MOBILE MENU
-    ===================================================== */
+       ============================================ */
 
-    const menuButton =
-        document.querySelector(".menu-btn");
+    const menuBtn = document.querySelector(".menu-btn");
+    const mobileMenu = document.querySelector(".mobile-menu");
 
-    const mobileMenu =
-        document.querySelector(".mobile-menu");
+    if (menuBtn && mobileMenu) {
 
+        menuBtn.addEventListener("click", () => {
+            const isActive = mobileMenu.classList.toggle("active");
 
-    if (menuButton && mobileMenu) {
-
-        menuButton.addEventListener("click", () => {
-
-            mobileMenu.classList.toggle("active");
-
-            document.body.classList.toggle(
-                "menu-open"
-            );
-
+            document.body.classList.toggle("menu-open", isActive);
+            menuBtn.setAttribute("aria-expanded", isActive);
         });
 
 
-        const mobileLinks =
-            mobileMenu.querySelectorAll("a");
+        /* Close menu when clicking a mobile link */
 
+        const mobileLinks = mobileMenu.querySelectorAll("a");
 
-        mobileLinks.forEach(link => {
-
+        mobileLinks.forEach((link) => {
             link.addEventListener("click", () => {
-
-                mobileMenu.classList.remove(
-                    "active"
-                );
-
-                document.body.classList.remove(
-                    "menu-open"
-                );
-
+                mobileMenu.classList.remove("active");
+                document.body.classList.remove("menu-open");
+                menuBtn.setAttribute("aria-expanded", "false");
             });
-
         });
 
+
+        /* Close menu with Escape key */
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                mobileMenu.classList.remove("active");
+                document.body.classList.remove("menu-open");
+                menuBtn.setAttribute("aria-expanded", "false");
+            }
+        });
     }
 
 
-    /* =====================================================
+    /* ============================================
        SCROLL REVEAL
-    ===================================================== */
+       ============================================ */
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".reveal");
 
+    if ("IntersectionObserver" in window && revealElements.length > 0) {
 
-    if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
 
-        const revealObserver =
-            new IntersectionObserver(
-                entries => {
+                entries.forEach((entry) => {
 
-                    entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target);
+                    }
 
-                        if (entry.isIntersecting) {
+                });
 
-                            entry.target.classList.add(
-                                "active"
-                            );
-
-                            revealObserver.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.08
-                }
-            );
+            },
+            {
+                threshold: 0.08
+            }
+        );
 
 
-        revealElements.forEach(element => {
-
+        revealElements.forEach((element) => {
             revealObserver.observe(element);
-
         });
 
     } else {
 
-        revealElements.forEach(element => {
-
+        revealElements.forEach((element) => {
             element.classList.add("active");
-
         });
 
     }
 
 
-    /* =====================================================
+    /* ============================================
        TEMPLATE FILTER
-    ===================================================== */
+       ============================================ */
 
-    const filterButtons =
-        document.querySelectorAll(
-            ".template-filter"
-        );
-
-
-    const templateCards =
-        document.querySelectorAll(
-            ".market-template-card"
-        );
+    const filterButtons = document.querySelectorAll(".template-filter");
+    const templateCards = document.querySelectorAll(".market-template-card");
+    const emptyMessage = document.querySelector("#templateEmpty");
 
 
-    const emptyMessage =
-        document.querySelector(
-            "#templateEmpty"
-        );
+    if (filterButtons.length > 0 && templateCards.length > 0) {
 
+        const filterTemplates = (filter) => {
 
-    filterButtons.forEach(button => {
+            let visibleCount = 0;
 
-        button.addEventListener("click", () => {
+            templateCards.forEach((card) => {
 
-            const filter =
-                button.dataset.filter;
+                const cardType = (card.dataset.type || "")
+                    .toLowerCase()
+                    .trim();
 
+                const cardTypes = cardType
+                    ? cardType.split(/\s+/)
+                    : [];
 
-            /* ---------------------------------------------
-               REMOVE ACTIVE FROM ALL FILTER BUTTONS
-            --------------------------------------------- */
-
-            filterButtons.forEach(btn => {
-
-                btn.classList.remove("active");
-
-            });
-
-
-            /* ---------------------------------------------
-               ADD ACTIVE TO SELECTED BUTTON
-            --------------------------------------------- */
-
-            button.classList.add("active");
-
-
-            let visibleTemplates = 0;
-
-
-            /* ---------------------------------------------
-               FILTER TEMPLATE CARDS
-            --------------------------------------------- */
-
-            templateCards.forEach(card => {
-
-                const cardTypes =
-                    card.dataset.type
-                        .toLowerCase()
-                        .split(" ");
-
-
-                const shouldShow =
+                const isVisible =
                     filter === "all" ||
-                    cardTypes.includes(filter);
+                    cardTypes.includes(filter.toLowerCase());
 
-
-                if (shouldShow) {
+                if (isVisible) {
 
                     card.hidden = false;
-
-                    visibleTemplates++;
+                    visibleCount++;
 
                 } else {
 
@@ -210,167 +152,153 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-            /* ---------------------------------------------
-               EMPTY MESSAGE
-            --------------------------------------------- */
+            /* Show / hide empty message */
 
             if (emptyMessage) {
 
-                emptyMessage.hidden =
-                    visibleTemplates !== 0;
+                if (visibleCount === 0) {
+                    emptyMessage.hidden = false;
+                } else {
+                    emptyMessage.hidden = true;
+                }
 
             }
 
-        });
-
-    });
+        };
 
 
-    /* =====================================================
-       CURRENT YEAR
-    ===================================================== */
+        filterButtons.forEach((button) => {
 
-    const yearElements =
-        document.querySelectorAll(
-            "[data-year]"
-        );
+            button.addEventListener("click", () => {
 
+                /* Remove active state */
 
-    yearElements.forEach(element => {
-
-        element.textContent =
-            new Date().getFullYear();
-
-    });
-
-
-    /* =====================================================
-       SMOOTH ANCHOR SCROLL
-    ===================================================== */
-
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                function (event) {
-
-                    const targetId =
-                        this.getAttribute("href");
-
-
-                    /* Ignore empty # links */
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    /* If target doesn't exist */
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    /* -------------------------------------
-                       NAVBAR HEIGHT
-                    ------------------------------------- */
-
-                    const navbarElement =
-                        document.querySelector(
-                            ".navbar"
-                        );
-
-
-                    const navbarHeight =
-                        navbarElement
-                            ? navbarElement.offsetHeight
-                            : 0;
-
-
-                    /* -------------------------------------
-                       TARGET POSITION
-                    ------------------------------------- */
-
-                    const targetPosition =
-                        target.getBoundingClientRect()
-                            .top +
-                        window.scrollY -
-                        navbarHeight;
-
-
-                    /* -------------------------------------
-                       SMOOTH SCROLL
-                    ------------------------------------- */
-
-                    window.scrollTo({
-
-                        top: targetPosition,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
-       BACK TO TOP
-    ===================================================== */
-
-    const backTop =
-        document.querySelector(".back-top");
-
-
-    if (backTop) {
-
-        backTop.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-
-                window.scrollTo({
-
-                    top: 0,
-
-                    behavior: "smooth"
-
+                filterButtons.forEach((item) => {
+                    item.classList.remove("active");
+                    item.setAttribute("aria-selected", "false");
                 });
 
-            }
-        );
+
+                /* Add active state */
+
+                button.classList.add("active");
+                button.setAttribute("aria-selected", "true");
+
+
+                /* Get selected filter */
+
+                const filter = (
+                    button.dataset.filter || "all"
+                ).toLowerCase().trim();
+
+
+                filterTemplates(filter);
+
+            });
+
+        });
+
+
+        /* Apply default filter */
+
+        const activeButton =
+            document.querySelector(".template-filter.active");
+
+        const initialFilter = activeButton
+            ? (
+                activeButton.dataset.filter || "all"
+            ).toLowerCase().trim()
+            : "all";
+
+        filterTemplates(initialFilter);
 
     }
 
 
-    /* =====================================================
-       TEMPLATE BUY / DEMO LINKS
-       External links open normally.
-       No extra JavaScript needed.
-    ===================================================== */
+    /* ============================================
+       CURRENT YEAR
+       ============================================ */
+
+    const yearElements = document.querySelectorAll("[data-year]");
+
+    yearElements.forEach((element) => {
+        element.textContent = new Date().getFullYear();
+    });
 
 
-    /* =====================================================
+    /* ============================================
+       SMOOTH ANCHOR SCROLLING
+       ============================================ */
+
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+    anchorLinks.forEach((link) => {
+
+        link.addEventListener("click", (event) => {
+
+            const href = link.getAttribute("href");
+
+            if (!href || href === "#") {
+                return;
+            }
+
+
+            const targetId = href.substring(1);
+            const target = document.getElementById(targetId);
+
+            if (!target) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+
+            const navbarHeight = navbar
+                ? navbar.offsetHeight
+                : 0;
+
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                navbarHeight -
+                15;
+
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
+
+        });
+
+    });
+
+
+    /* ============================================
+       BACK TO TOP
+       ============================================ */
+
+    const backTop = document.querySelector(".back-top");
+
+    if (backTop) {
+
+        backTop.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+
+    /* ============================================
        END
-    ===================================================== */
+       ============================================ */
 
 });
