@@ -92,7 +92,6 @@
 
             <nav class="desktop-nav">
                 <a href="#work">Work</a>
-                <a href="templates.html">Templates</a>
                 <a href="#services">Services</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#about">About</a>
@@ -100,29 +99,35 @@
                 <a href="#faq">FAQ</a>
             </nav>
 
-            <a href="#contact" class="nav-cta">Start a project <span>↗</span></a>
+            <div class="nav-actions">
+                <a href="#contact" class="nav-cta project-b">Start a project <span>↗</span></a>
+                <a href="https://ko-fi.com/nipunikaweeravansha" target="_blank" rel="noopener noreferrer" class="nav-cta nav-support-cta" aria-label="Support my work on Ko-fi"><span class="support-label-desktop">Support my work</span><span class="support-label-mobile">Donate</span><span class="support-heart" aria-hidden="true">♡</span></a>
+            </div>
 
-            <button class="menu-btn" aria-label="Open menu">
+            <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
                 <span></span><span></span>
             </button>
         </div>
     </header>
 
-    <div class="mobile-menu">
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" inert>
         <div class="mobile-menu-links">
             <a href="#work">Work <span>01</span></a>
-            <a href="templates.html">Templates <span>02</span></a>
+            <a href="#freebies">Free Downloads <span>02</span></a>
             <a href="#services">Services <span>03</span></a>
             <a href="#pricing">Pricing <span>04</span></a>
             <a href="#about">About <span>05</span></a>
             <a href="#contact">Contact <span>06</span></a>
             <a href="#faq">FAQ <span>07</span></a>
         </div>
-        <div class="mobile-menu-footer">
-            <span>FRONTEND DEVELOPMENT</span>
-            <span>WORLDWIDE</span>
+        <div class="mobile-menu-bottom">
+            <a href="#contact" class="mobile-project-cta">Start a project <span aria-hidden="true">↗</span></a>
+            <div class="mobile-menu-footer">
+                <span>FRONTEND DEVELOPMENT</span>
+                <span>WORLDWIDE</span>
+            </div>
         </div>
-    </div>
+    </nav>
 
     <main>
 
@@ -315,23 +320,26 @@
             </div>
         </section>
 
-        <section class="templates-promo section" id="templates">
+        <section class="templates-promo section" id="freebies">
             <div class="container">
                 <div class="templates-promo-grid">
                     <div class="templates-promo-copy reveal">
-                        <div class="section-meta"><span>04</span><span>TEMPLATE MARKETPLACE</span></div>
-                        <h2 class="section-heading">Build faster with <span>ready-made templates.</span></h2>
-                        <p>Looking for a polished website without starting from zero? Nipunika Studio offers a growing collection of professionally designed templates — including free and premium options for HTML, CSS &amp; JavaScript, PHP and WordPress.</p>
-                        <p>Choose a template, preview it, and get it directly from its marketplace listing. Free templates are available at no cost, while premium templates give you more complete and advanced website solutions.</p>
-                        <a href="templates.html" class="btn btn-primary magnetic"><span>Browse all templates</span><span class="arrow">↗</span></a>
+                        <div class="section-meta"><span>04</span><span>FREE DIGITAL RESOURCES</span></div>
+                        <h2 class="section-heading">Make your screens <span>feel like yours.</span></h2>
+                        <p>Discover Zelvique — my other website, where you can find free wallpapers for desktop and mobile, along with PNG resources to download and use in your own creative projects.</p>
+                        <p>Explore the collection, find something you love, and download your favourites for free. New visual resources can make your devices and designs feel a little more personal.</p>
+                        <div class="freebies-actions">
+                            <a href="https://zelvique.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic"><span>Explore free downloads</span><span class="arrow">↗</span></a>
+                            <a href="https://ko-fi.com/nipunikaweeravansha" target="_blank" rel="noopener noreferrer" class="btn btn-secondary magnetic"><span>Support my work</span><span class="arrow">♡</span></a>
+                        </div>
                     </div>
                     <div class="templates-promo-visual reveal">
-                        <div class="promo-card promo-card-back"><span>FREE</span><strong>HTML / CSS / JS</strong></div>
-                        <div class="promo-card promo-card-mid"><span>PREMIUM</span><strong>WORDPRESS</strong></div>
+                        <div class="promo-card promo-card-back"><span>FREE</span><strong>DESKTOP WALLPAPERS</strong></div>
+                        <div class="promo-card promo-card-mid"><span>PNG RESOURCES</span><strong>CREATIVE ASSETS</strong></div>
                         <div class="promo-card promo-card-front">
-                            <div class="promo-card-top"><span>NS / TEMPLATES</span><span>2026</span></div>
-                            <div class="promo-card-title">READY<br><span>TO BUILD.</span></div>
-                            <div class="promo-card-bottom"><span>HTML</span><span>PHP</span><span>WORDPRESS</span></div>
+                            <div class="promo-card-top"><span>ZELVIQUE / FREEBIES</span><span>2026</span></div>
+                            <div class="promo-card-title">YOUR<br><span>NEW WALL.</span></div>
+                            <div class="promo-card-bottom"><span>DESKTOP</span><span>MOBILE</span><span>PNG</span></div>
                         </div>
                     </div>
                 </div>
@@ -897,7 +905,6 @@
 
                 <div class="footer-links">
                     <a href="#work">Work</a>
-                    <a href="templates.html">Templates</a>
                     <a href="#services">Services</a>
                     <a href="#pricing">Pricing</a>
                     <a href="#about">About</a>
