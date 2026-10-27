@@ -31,27 +31,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.querySelector(".menu-btn");
     const mobileMenu = document.querySelector(".mobile-menu");
     const mobileLinks = document.querySelectorAll(".mobile-menu a");
+    const mobileBreakpoint = window.matchMedia("(max-width: 1100px)");
 
-    menuButton.addEventListener("click", () => {
+    const setMenuOpen = (isOpen) => {
+        if (!menuButton || !mobileMenu) return;
+        const open = Boolean(isOpen && mobileBreakpoint.matches);
+        mobileMenu.classList.toggle("active", open);
+        document.body.classList.toggle("menu-open", open);
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        mobileMenu.setAttribute("aria-hidden", String(!open));
+        mobileMenu.inert = !open;
+    };
 
-        mobileMenu.classList.toggle("active");
-
-        document.body.classList.toggle("menu-open");
-
-    });
-
-
-    mobileLinks.forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("active");
-
-            document.body.classList.remove("menu-open");
-
+    if (menuButton && mobileMenu) {
+        setMenuOpen(false);
+        menuButton.addEventListener("click", () => {
+            setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
         });
 
-    });
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => setMenuOpen(false));
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && mobileMenu.classList.contains("active")) {
+                setMenuOpen(false);
+                menuButton.focus();
+            }
+        });
+
+        const handleBreakpointChange = () => setMenuOpen(false);
+        if (typeof mobileBreakpoint.addEventListener === "function") {
+            mobileBreakpoint.addEventListener("change", handleBreakpointChange);
+        } else {
+            mobileBreakpoint.addListener(handleBreakpointChange);
+        }
+    }
 
 
     /* =====================================================
